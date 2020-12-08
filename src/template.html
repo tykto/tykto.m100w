@@ -26,9 +26,9 @@
 	     the current page has one -->
 	%sapper.head%
 </head>
-<body class="flex flex-col h-screen text-base t-text-charcoal">
+<body class="h-screen">
 	<!-- The application will be rendered inside this element,
 	     because `src/client.js` references it -->
-	<div id="sapper">%sapper.html%</div>
+	<div id="sapper" class="h-full">%sapper.html%</div>
 </body>
 </html>
