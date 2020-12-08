@@ -1,4 +1,4 @@
 //import type { AccentEnum } from '@app/constants/enums';
-import { writable } from 'svelte/store';
+import { writableLocalStorage } from './writableLocalStorage';
 
-export const accentStore = writable(null);
+export const accentStore = writableLocalStorage('accent', null);
