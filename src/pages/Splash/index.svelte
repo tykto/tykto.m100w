@@ -1,16 +1,14 @@
-<h1>Splash</h1>
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import { get } from 'svelte/store';
+  import { accentStore } from '@app/data/accentStore';
+  import logoUrl from './logo.jpg';
 
-<a href="/">Splash</a>
-<br />
-<a href="/accent">Accent</a>
-<br />
-<a href="/colours">Select Colour</a>
-<br />
-<a href="/colours/games">Select Game</a>
-<br />
-<a href="/colours/games/flash-cards">Flash Cards</a>
-<br />
-<a href="/colours/games/pick-the-word">Pick the Word</a>
-<br />
-<a href="/affirmation">Affirmation</a>
-<br />
+  onMount(() => setTimeout(() => (window.location.href = get(accentStore) === null ? '/accent' : '/colours'), 5000));
+</script>
+
+<div class="flex flex-auto flex-col justify-center items-center h-full">
+  <h1 class="text-5xl font-medium hidden">Magic Words</h1>
+  <h1 class="text-5xl font-medium hidden">M100W</h1>
+  <img class="animate-pulse" src={logoUrl} alt="magic 100 words" />
+</div>
