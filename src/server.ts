@@ -5,9 +5,10 @@ import sirv from 'sirv';
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
+const basepath = dev ? '/' : '/tykto.m100w';
 
 polka() // You can also use Express
-  .use('/tykto.m100w', compression({ threshold: 0 }), sirv('static', { dev }), sapper.middleware())
+  .use(basepath, compression({ threshold: 0 }), sirv('static', { dev }), sapper.middleware())
   .listen(PORT, (err) => {
     if (err) console.log('error', err);
   });
