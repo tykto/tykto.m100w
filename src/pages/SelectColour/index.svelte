@@ -3,8 +3,8 @@
   import { colourStore } from '@app/data/colourStore';
   import Button from './Button';
 
-  const handleClick = (e) => {
-    colourStore.set(e.detail);
+  const handleClick = ({ detail }: any) => {
+    colourStore.set(detail);
     window.location.href = '/colours/games';
   };
 </script>
