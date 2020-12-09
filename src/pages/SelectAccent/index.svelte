@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex flex-auto flex-col justify-center items-center h-full">
-  <div class="flex flex-col space-y-6 py-3">
+  <div class="flex flex-col w-4/5 space-y-6 py-3">
     <Button accentValue={accent.australian} imageUrl={flagAustraliaUrl} imageAltText="Australian flag" on:click={handleClick}>Australian</Button>
     <Button accentValue={accent.english} imageUrl={flagEnglandUrl} imageAltText="UK flag" on:click={handleClick}>English</Button>
     <Button accentValue={accent.unitedStates} imageUrl={flagUSUrl} imageAltText="US flag" on:click={handleClick}>United States</Button>
