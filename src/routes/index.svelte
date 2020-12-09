@@ -3,3 +3,5 @@
 </script>
 
 <SplashPage />
+
+<!-- <a href="/accent">accent</a> -->
