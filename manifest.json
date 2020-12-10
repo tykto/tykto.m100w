@@ -4,6 +4,7 @@
   "name": "Magic Words",
   "short_name": "M100W",
   "display": "standalone",
+  "orientation": "portrait",
   "start_url": "/",
   "icons": [
     {
