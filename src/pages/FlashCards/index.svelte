@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
   import Card from '@this/components/Card';
-  import { config } from '@this/logic/config';
+  import { words } from '@this/constants/words';
+  import { background, border } from '@this/constants/theme';
   import { CardDeck } from '@this/logic/CardDeck';
   import { colourStore as colour } from '@this/data/colourStore';
   import { accentStore as accent } from '@this/data/accentStore';
@@ -17,8 +18,7 @@
   };
 
   const startGame = () => {
-    const gameConfig = config[$colour];
-    deck = new CardDeck(gameConfig.words);
+    deck = new CardDeck(gameConfig);
     startRound();
   };
 
@@ -33,6 +33,9 @@
   let progress: any = {};
   let timeoutHandle: any = null;
   let word: string = '';
+  const gameConfig = words[$colour];
+  $: borderClass = border[$colour];
+  $: backgroundClass = background[$colour];
 
   onMount(() => startGame());
   onDestroy(() => clearTimeout(timeoutHandle));
@@ -45,9 +48,9 @@
   <div class="flex justify-center items-center h-full">
     <Card
       bind:this={cardCtl}
-      cardClass="flex justify-center items-center h-1/2 w-3/4 sm:w-2/5 xl:w-1/3 2xl:w-1/5 rounded border-solid border-20 border-gray-800 bg-gray-200"
-      backClass="bg-gray-300"
-      frontClass="bg-white flex justify-center items-center text-5xl font-bold"
+      class="flex justify-center items-center h-1/2 w-3/4 sm:w-2/5 xl:w-1/3 2xl:w-1/5"
+      backClass="rounded border-solid border-20 {backgroundClass} {borderClass}"
+      frontClass="bg-white flex justify-center items-center text-5xl font-bold rounded border-solid border-20 {borderClass}"
       text={word}
       {disabled}
       on:flip={handleFlip}

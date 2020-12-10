@@ -1,7 +1,7 @@
 // Based on: https://www.npmjs.com/package/svelte-local-storage-store
 import { get, writable } from 'svelte/store';
 
-const safeParse = (value) => {
+const safeParse = (value: string) => {
   try {
     return JSON.parse(value);
   } catch {
@@ -9,8 +9,8 @@ const safeParse = (value) => {
   }
 };
 
-function _writableLocalStorage(key, initialValue) {
-  const store = writable(initialValue);
+const make = <T>(key: string, initialValue: T) => {
+  const store = writable<T>(initialValue);
   const { subscribe, set } = store;
 
   const item = localStorage.getItem(key);
@@ -19,19 +19,17 @@ function _writableLocalStorage(key, initialValue) {
   }
 
   return {
-    set: (value) => {
+    set: (value: T) => {
       localStorage.setItem(key, JSON.stringify(value));
       set(value);
     },
-    update: (cb) => {
-      const value = cb(get(store));
+    update: (updater: (value: T) => T) => {
+      const value = updater(get(store));
       localStorage.setItem(key, JSON.stringify(value));
       set(value);
     },
     subscribe,
   };
-}
+};
 
-// TODO: Fix `typeof(localStorage) === 'undefined'`
-export const writableLocalStorage = (key, initialValue) =>
-  typeof localStorage === 'undefined' ? writable(initialValue) : _writableLocalStorage(key, initialValue);
+export const writableLocalStorage = <T>(key: string, initialValue: T) => ((process as any).browser ? make<T>(key, initialValue) : writable<T>(initialValue));
