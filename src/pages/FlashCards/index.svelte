@@ -17,7 +17,8 @@
   };
 
   const startGame = () => {
-    deck = new CardDeck(config[$colour]);
+    const gameConfig = config[$colour];
+    deck = new CardDeck(gameConfig.words);
     startRound();
   };
 
