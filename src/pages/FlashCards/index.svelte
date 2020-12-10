@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
   import Card from '@this/components/Card';
-  import { words } from '@this/constants/words';
+  import { groupedWords } from '@this/constants/groupedWords';
   import { background, border } from '@this/constants/theme';
   import { CardDeck } from '@this/logic/CardDeck';
   import { colourStore as colour } from '@this/data/colourStore';
@@ -18,7 +18,7 @@
   };
 
   const startGame = () => {
-    deck = new CardDeck(gameConfig);
+    deck = new CardDeck(words);
     startRound();
   };
 
@@ -33,7 +33,7 @@
   let progress: any = {};
   let timeoutHandle: any = null;
   let word: string = '';
-  const gameConfig = words[$colour];
+  const words = groupedWords[$colour];
   $: borderClass = border[$colour];
   $: backgroundClass = background[$colour];
 

@@ -1,6 +1,6 @@
 import * as colourEnum from '@this/constants/colourEnum';
 
-export const words = {
+export const groupedWords = {
   [colourEnum.golden]: ['a', 'and', 'be', 'I', 'in', 'is', 'it', 'of', 'that', 'the', 'to', 'was'],
   [colourEnum.blue]: ['an', 'by', 'do', 'go', 'if', 'me', 'my', 'no', 'or', 'up'],
   [colourEnum.green]: ['big', 'can', 'did', 'get', 'has', 'him', 'new', 'now', 'off', 'old', 'our', 'out', 'see', 'she', 'two', 'who'],
