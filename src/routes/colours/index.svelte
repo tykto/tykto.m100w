@@ -1,5 +1,5 @@
-<script type="ts">
-  import SelectColourPage from '@app/pages/SelectColour';
+<script lang="ts">
+  import SelectColourPage from '@this/pages/SelectColour';
 </script>
 
 <SelectColourPage />

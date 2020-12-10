@@ -1,5 +1,5 @@
-<script type="ts">
-  import AffirmationPage from '@app/pages/Affirmation';
+<script lang="ts">
+  import AffirmationPage from '@this/pages/Affirmation';
 </script>
 
 <AffirmationPage />

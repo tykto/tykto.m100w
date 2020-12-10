@@ -1,33 +1,33 @@
 <!-- based on: https://github.com/borntofrappe/svelte-tutorial/blob/master/Concentration/src/Card.svelte -->
-<script>
+<script lang="ts">
   import { createEventDispatcher, onDestroy } from 'svelte';
-  export let cardClass = '';
+  export { rootClass as class };
+  let rootClass = '';
   export let backClass = '';
+  export let disabled = false;
   export let frontClass = '';
   export let text = '';
-  export let disabled = false;
-
-  export const flip = () => flipCard();
+  export const flip = () => doFlip();
 
   const handleClick = () => {
     if (!disabledInternal && !disabled) {
       disabledInternal = true;
-      flipCard();
+      doFlip();
     }
   };
 
-  const flipCard = () => {
+  const doFlip = () => {
     faceDown = !faceDown;
     timeoutHandle = setTimeout(() => {
-      dispatch('flip', { faceDown: faceDown });
+      dispatch('flip', { faceDown });
       dispatch(faceDown ? 'flipToBack' : 'flipToFront');
       disabledInternal = false;
     }, 1000);
   };
 
-  let timeoutHandle = null;
   let disabledInternal = false;
   let faceDown = true;
+  let timeoutHandle = null;
   const dispatch = createEventDispatcher();
 
   onDestroy(() => clearTimeout(timeoutHandle));
@@ -42,12 +42,12 @@
 
   .t-face-down,
   .t-back {
-    transform: rotateY(180deg);
+    transform: perspective(800px) rotateY(180deg);
   }
 
   .t-face-up,
   .t-front {
-    transform: rotateY(0deg);
+    transform: perspective(800px) rotateY(0deg);
   }
 
   .t-face {
@@ -56,12 +56,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: inherit;
     backface-visibility: hidden;
   }
 </style>
 
-<div class="t-card {cardClass}" class:t-face-down={faceDown} class:t-face-up={!faceDown}>
+<div class="t-card {rootClass}" class:t-face-down={faceDown} class:t-face-up={!faceDown}>
   <div class="t-face t-front {frontClass}" on:click={handleClick}>
     <h1>{text}</h1>
   </div>

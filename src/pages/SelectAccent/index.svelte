@@ -1,6 +1,6 @@
-<script type="ts">
-  import * as accent from '@app/constants/accentEnum';
-  import { accentStore } from '@app/data/accentStore';
+<script lang="ts">
+  import * as accent from '@this/constants/accentEnum';
+  import { accentStore } from '@this/data/accentStore';
   import Button from './Button';
   import flagAustraliaUrl from './assets/flag-australia.gif';
   import flagEnglandUrl from './assets/flag-england.gif';

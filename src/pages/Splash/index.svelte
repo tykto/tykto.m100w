@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
-  import { accentStore } from '@app/data/accentStore';
+  import { accentStore } from '@this/data/accentStore';
   import logoUrl from './logo.jpg';
 
   onMount(() => setTimeout(() => (window.location.href = get(accentStore) === null ? '/accent' : '/colours'), 5000));
