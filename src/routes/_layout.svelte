@@ -3,7 +3,7 @@
   <meta name="description" content="Word games" />
   <meta name="keywords" content="magic words 100" />
   <meta name="robots" content="index, follow" />
-  <title>Tykto Web Design and Development</title>
+  <title>M100W - Magic Words</title>
 </svelte:head>
 
 <slot />
