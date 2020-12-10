@@ -8,37 +8,59 @@
   import { accentStore as accent } from '@this/data/accentStore';
 
   const handleFlip = ({ detail }) => (disabled = !detail.faceDown);
+
   const handleFlipToBack = () => startRound();
-  const handleFlipToFront = () => (timeoutHandle = setTimeout(() => finishRound(), 5000));
+
+  const handleFlipToFront = () => {
+    countdown = timeLimitSeconds;
+    intervalHandle = setInterval(() => tick(), 1000);
+    timeoutHandle = setTimeout(() => finishRound(), 1000 * timeLimitSeconds);
+  };
 
   const finishRound = () => {
+    countdown = 0;
+    clearInterval(intervalHandle);
     const sound = new Audio(`audio/${$accent}/${word}.mp3`);
     sound.onended = () => cardCtl.flip();
     sound.play();
   };
 
   const startGame = () => {
+    tickMp3 = new Audio('audio/tick.mp3');
     deck = new CardDeck(words);
     startRound();
   };
 
   const startRound = () => {
+    countdown = timeLimitSeconds;
     word = deck.getNextCard();
     progress = deck.getProgress();
   };
 
+  const tick = () => {
+    countdown--;
+    if (countdown > 0) {
+      tickMp3.play();
+    }
+  };
+
   let cardCtl: any;
+  let countdown = 0;
   let deck: CardDeck;
   let disabled: boolean = false;
   let progress: any = {};
+  let intervalHandle: any = null;
+  let tickMp3: any = null;
   let timeoutHandle: any = null;
   let word: string = '';
+  const timeLimitSeconds = 5;
   const words = groupedWords[$colour];
   $: borderClass = border[$colour];
   $: backgroundClass = background[$colour];
 
   onMount(() => startGame());
   onDestroy(() => clearTimeout(timeoutHandle));
+  onDestroy(() => clearInterval(intervalHandle));
 </script>
 
 <div class="flex flex-col h-full">
@@ -58,7 +80,7 @@
       on:flipToBack={handleFlipToBack} />
   </div>
   <div class="flex justify-between px-2 py-2">
-    <div class="font-bold py-2 px-4"><span class="text-2xl pt-2">5</span></div>
+    <div class="font-bold py-2 px-4"><span class="text-2xl pt-2">{countdown}</span></div>
     <div class="flex justify-center items-center px-3 space-x-2">
       <span class="font-medium">{progress.card}</span>
       <span>of</span>
