@@ -1,4 +1,5 @@
 <script lang="ts">
+  import lowerCase from 'lodash/lowerCase';
   import { onDestroy, onMount } from 'svelte';
   import Card from '@this/components/Card';
   import { groupedWords } from '@this/constants/groupedWords';
@@ -20,7 +21,7 @@
   const finishRound = () => {
     countdown = 0;
     clearInterval(intervalHandle);
-    const sound = new Audio(`audio/${$accent}/${word}.mp3`);
+    const sound = new Audio(`audio/${$accent}/${lowerCase(word)}.mp3`);
     sound.onended = () => cardCtl.flip();
     sound.play();
   };
