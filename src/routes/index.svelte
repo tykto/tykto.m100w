@@ -1,5 +1,5 @@
-<script type="ts">
-  import SplashPage from '@app/pages/Splash';
+<script lang="ts">
+  import SplashPage from '@this/pages/Splash';
 </script>
 
 <SplashPage />

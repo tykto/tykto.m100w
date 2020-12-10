@@ -1,5 +1,5 @@
-<script type="ts">
-  import SelectGamePage from '@app/pages/SelectGame';
+<script lang="ts">
+  import SelectGamePage from '@this/pages/SelectGame';
 </script>
 
 <SelectGamePage />

@@ -1,5 +1,5 @@
-<script type="ts">
-  import PickTheWordPage from '@app/pages/PickTheWord';
+<script lang="ts">
+  import PickTheWordPage from '@this/pages/PickTheWord';
 </script>
 
 <PickTheWordPage />

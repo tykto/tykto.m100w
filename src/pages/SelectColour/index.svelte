@@ -1,6 +1,6 @@
 <script lang="ts">
-  import * as colour from '@app/constants/colourEnum';
-  import { colourStore } from '@app/data/colourStore';
+  import * as colour from '@this/constants/colourEnum';
+  import { colourStore } from '@this/data/colourStore';
   import Button from './Button';
 
   const handleClick = ({ detail }: any) => {

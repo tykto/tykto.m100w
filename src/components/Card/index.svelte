@@ -1,5 +1,5 @@
 <!-- based on: https://github.com/borntofrappe/svelte-tutorial/blob/master/Concentration/src/Card.svelte -->
-<script>
+<script lang="ts">
   import { createEventDispatcher, onDestroy } from 'svelte';
   export let cardClass = '';
   export let backClass = '';

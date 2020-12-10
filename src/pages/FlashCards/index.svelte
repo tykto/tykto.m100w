@@ -1,31 +1,39 @@
-<script>
+<script lang="ts">
   import { onDestroy, onMount } from 'svelte';
-  import Card from '@app/components/Card';
-  import { Game } from './Game';
+  import Card from '@this/components/Card';
+  import { config } from '@this/logic/config';
+  import { CardDeck } from '@this/logic/CardDeck';
+  import { colourStore as colour } from '@this/data/colourStore';
+  import { accentStore as accent } from '@this/data/accentStore';
 
-  const handleFlipToFront = () => (timeoutHandle = setTimeout(() => finishRound(), 5000));
-  const handleFlipToBack = () => startRound();
   const handleFlip = ({ detail }) => (disabled = !detail.faceDown);
-
-  const startRound = () => {
-    card = game.getNextCard();
-    progress = game.getProgress();
-  };
+  const handleFlipToBack = () => startRound();
+  const handleFlipToFront = () => (timeoutHandle = setTimeout(() => finishRound(), 5000));
 
   const finishRound = () => {
-    const sound = new Audio(card.audioUrl);
+    const sound = new Audio(`audio/${$accent}/${word}.mp3`);
     sound.onended = () => cardCtl.flip();
     sound.play();
   };
 
-  let cardCtl;
-  let timeoutHandle = null;
-  let card = {};
-  let progress = {};
-  let disabled = false;
-  const game = new Game();
+  const startGame = () => {
+    deck = new CardDeck(config[$colour]);
+    startRound();
+  };
 
-  onMount(() => startRound());
+  const startRound = () => {
+    word = deck.getNextCard();
+    progress = deck.getProgress();
+  };
+
+  let cardCtl: any;
+  let deck: CardDeck;
+  let disabled: boolean = false;
+  let progress: any = {};
+  let timeoutHandle: any = null;
+  let word: string = '';
+
+  onMount(() => startGame());
   onDestroy(() => clearTimeout(timeoutHandle));
 </script>
 
@@ -39,7 +47,7 @@
       cardClass="flex justify-center items-center h-1/2 w-3/4 sm:w-2/5 xl:w-1/3 2xl:w-1/5 rounded border-solid border-20 border-gray-800 bg-gray-200"
       backClass="bg-gray-300"
       frontClass="bg-white flex justify-center items-center text-5xl font-bold"
-      text={card.text}
+      text={word}
       {disabled}
       on:flip={handleFlip}
       on:flipToFront={handleFlipToFront}
