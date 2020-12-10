@@ -40,7 +40,7 @@
 
   const tick = () => {
     countdown--;
-    if (countdown > 0) {
+    if (countdown > 0 && countdown <= 3) {
       tickMp3.play();
     }
   };
