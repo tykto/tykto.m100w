@@ -6,20 +6,19 @@
   export let frontClass = '';
   export let text = '';
   export let disabled = false;
-
-  export const flip = () => flipCard();
+  export const flip = () => doFlip();
 
   const handleClick = () => {
     if (!disabledInternal && !disabled) {
       disabledInternal = true;
-      flipCard();
+      doFlip();
     }
   };
 
-  const flipCard = () => {
+  const doFlip = () => {
     faceDown = !faceDown;
     timeoutHandle = setTimeout(() => {
-      dispatch('flip', { faceDown: faceDown });
+      dispatch('flip', { faceDown });
       dispatch(faceDown ? 'flipToBack' : 'flipToFront');
       disabledInternal = false;
     }, 1000);
@@ -42,12 +41,12 @@
 
   .t-face-down,
   .t-back {
-    transform: rotateY(180deg);
+    transform: perspective(800px) rotateY(180deg);
   }
 
   .t-face-up,
   .t-front {
-    transform: rotateY(0deg);
+    transform: perspective(800px) rotateY(0deg);
   }
 
   .t-face {

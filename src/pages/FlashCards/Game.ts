@@ -15,7 +15,7 @@ const cards = [
   { text: 'was', audioUrl: '/audio/was.mp3' },
 ];
 
-export class FlashCards {
+export class Game {
   private _currentCard = -1;
   private _cards = [];
 
@@ -25,7 +25,7 @@ export class FlashCards {
     }
 
     this._currentCard++;
-    if (this._currentCard > this._cards.length) {
+    if (this._currentCard >= this._cards.length) {
       this._currentCard = 0;
     }
 
