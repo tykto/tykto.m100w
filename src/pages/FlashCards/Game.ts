@@ -6,6 +6,7 @@ const cards = [
   { text: 'be', audioUrl: '/audio/be.mp3' },
   { text: 'I', audioUrl: '/audio/i.mp3' },
   { text: 'in', audioUrl: '/audio/in.mp3' },
+  { text: 'is', audioUrl: '/audio/is.mp3' },
   { text: 'it', audioUrl: '/audio/it.mp3' },
   { text: 'of', audioUrl: '/audio/of.mp3' },
   { text: 'that', audioUrl: '/audio/that.mp3' },
