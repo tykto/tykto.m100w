@@ -27,12 +27,12 @@
   <div class="flex px-2 py-2">
     <h1>Flash Cards</h1>
   </div>
-  <div class="flex justify-center items-center h-full">
+  <div class="flex justify-center items-center h-full {backgroundClass}">
     <Card
       bind:this={cardCtl}
       class="flex justify-center items-center h-1/2 w-3/4 sm:w-2/5 xl:w-1/3 2xl:w-1/5"
-      backClass="rounded border-solid border-20 {backgroundClass} {borderClass}"
-      frontClass="bg-white flex justify-center items-center text-5xl font-bold rounded border-solid border-20 {borderClass}"
+      backClass="rounded bg-white"
+      frontClass="bg-white flex justify-center items-center text-5xl font-bold rounded"
       text={word}
       {disabled}
       on:flipToFront={handleFlipToFront}
