@@ -1,1 +1,0 @@
-import{g as a,a as t,S as s,i as e,s as o}from"./client.3c564479.js";import"./writableLocalStorage.97a7b023.js";import{a as r}from"./accentStore.1e19a7e3.js";async function c(){a(null===t(r)?"/accent":"/colours",{replaceState:!0})}export default class extends s{constructor(a){super(),e(this,a,null,null,o,{})}}export{c as preload};
