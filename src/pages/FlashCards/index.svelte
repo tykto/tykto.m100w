@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
   import Card from '@this/components/Card';
-  import { background, border } from '@this/constants/theme';
-  import { colourStore } from '@this/data/colourStore';
+  import { backgroundStore } from '@this/data/backgroundStore';
+  import { borderStore } from '@this/data/borderStore';
   import { makeController } from './utility/makeController';
   import { countdownStore, disabledStore, intervalHandleStore, progressStore, timeoutHandleStore, wordStore } from './data/game';
 
@@ -10,9 +10,9 @@
   const handleFlipToFront = () => controller.startRound();
 
   let cardCtl: any;
-  const borderClass = border[$colourStore];
-  const backgroundClass = background[$colourStore];
   const controller = makeController(() => cardCtl.flip());
+  $: backgroundClass = $backgroundStore;
+  $: borderClass = $borderStore;
   $: countdown = $countdownStore;
   $: disabled = $disabledStore;
   $: progress = $progressStore;

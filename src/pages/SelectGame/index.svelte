@@ -1,14 +1,13 @@
 <script lang="ts">
   import Button from './Button';
-  import { background } from '@this/constants/theme';
-  import { colourStore } from '@this/data/colourStore';
+  import { backgroundStore } from '@this/data/backgroundStore';
 
   const games = [
     { label: 'Flash Cards', url: '/colours/games/flash-cards' },
     { label: 'Pick the Word', url: '/colours/games/pick-the-word' },
   ];
 
-  const backgroundClass = background[$colourStore];
+  $: backgroundClass = $backgroundStore;
 </script>
 
 <div class="flex flex-auto flex-col justify-center items-center h-full">
