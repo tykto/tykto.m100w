@@ -5,7 +5,7 @@
 
   export async function preload() {
     if ((process as any).browser) {
-      goto(get(accentStore) === null ? '/accent' : '/colours');
+      goto(get(accentStore) === null ? '/accent' : '/colours', { replaceState: true });
     }
   }
 </script>
