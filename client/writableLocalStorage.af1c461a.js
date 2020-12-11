@@ -1,0 +1,1 @@
+import{l as t,w as e}from"./client.25e4ace8.js";const r=(r,s)=>{const a=e(s),{subscribe:o,set:c}=a,l=localStorage.getItem(r);return void 0!==l&&c((t=>{try{return JSON.parse(t)}catch(t){return null}})(l)),{set:t=>{localStorage.setItem(r,JSON.stringify(t)),c(t)},update:e=>{const s=e(t(a));localStorage.setItem(r,JSON.stringify(s)),c(s)},subscribe:o}},s=(t,e)=>r(t,e);export{s as w};
