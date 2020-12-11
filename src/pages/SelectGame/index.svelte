@@ -11,7 +11,7 @@
 </script>
 
 <div class="flex flex-auto flex-col justify-center items-center h-full">
-  <div class="flex flex-col w-4/5 space-y-2 py-3">
+  <div class="flex flex-col w-4/5 space-y-2">
     {#each games as { label, url }}
       <Button class={backgroundClass} {url}>{label}</Button>
     {/each}

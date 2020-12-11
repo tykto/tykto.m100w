@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex flex-auto flex-col justify-center items-center h-full">
-  <div class="flex flex-col w-4/5 space-y-2 py-3">
+  <div class="flex flex-col w-4/5 space-y-2">
     {#each colours as value}
       <Button colourClass={background[value]} colourValue={value} on:click={handleClick}>{labels[value]}</Button>
     {/each}
