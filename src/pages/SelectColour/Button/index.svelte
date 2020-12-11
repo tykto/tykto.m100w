@@ -7,7 +7,7 @@
 </script>
 
 <button
-  class="flex flex-col items-center {colourClass} shadow hover:shadow-lg focus:outline-none focus:shadow-lg font-bold py-4 px-4"
+  class="flex flex-col items-center {colourClass} shadow hover:shadow-lg focus:outline-none focus:shadow-lg font-bold py-5"
   on:click={() => dispatch('click', colourValue)}>
-  <span class="text-2xl pt-2"><slot /></span>
+  <span class="text-2xl"><slot /></span>
 </button>
