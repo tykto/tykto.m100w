@@ -7,7 +7,7 @@
     { label: 'Pick the Word', url: '/colours/games/pick-the-word' },
   ];
 
-  $: backgroundClass = $backgroundStore;
+  const backgroundClass = $backgroundStore;
 </script>
 
 <div class="flex flex-auto flex-col justify-center items-center h-full">

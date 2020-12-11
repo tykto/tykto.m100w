@@ -4,12 +4,12 @@
   import { colourStore } from '@this/data/colourStore';
   import Button from './Button';
 
-  const colours = [colour.golden, colour.red, colour.blue, colour.orange, colour.green, colour.indigo, colour.violet];
-
   const handleClick = ({ detail }: any) => {
     colourStore.set(detail);
     window.location.href = '/colours/games';
   };
+
+  const colours = [colour.golden, colour.red, colour.blue, colour.orange, colour.green, colour.indigo, colour.violet];
 </script>
 
 <div class="flex flex-auto flex-col justify-center items-center h-full">

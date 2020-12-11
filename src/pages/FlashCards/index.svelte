@@ -10,13 +10,13 @@
   const handleFlipToFront = () => controller.startRound();
 
   let cardCtl: any;
-  const controller = makeController(() => cardCtl.flip());
-  $: backgroundClass = $backgroundStore;
-  $: borderClass = $borderStore;
   $: countdown = $countdownStore;
   $: disabled = $disabledStore;
   $: progress = $progressStore;
   $: word = $wordStore;
+  const controller = makeController(() => cardCtl.flip());
+  const backgroundClass = $backgroundStore;
+  const borderClass = $borderStore;
 
   onMount(() => controller.startGame());
   onDestroy(() => clearTimeout($timeoutHandleStore));
