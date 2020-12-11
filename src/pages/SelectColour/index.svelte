@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '@sapper/app';
   import * as colour from '@this/constants/colourEnum';
   import { background, labels } from '@this/constants/theme';
   import { colourStore } from '@this/data/colourStore';
@@ -6,7 +7,7 @@
 
   const handleClick = ({ detail }: any) => {
     colourStore.set(detail);
-    window.location.href = '/colours/games';
+    goto('/colours/games');
   };
 
   const colours = [colour.golden, colour.red, colour.blue, colour.orange, colour.green, colour.indigo, colour.violet];

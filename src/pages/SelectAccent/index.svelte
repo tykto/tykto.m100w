@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '@sapper/app';
   import * as accent from '@this/constants/accentEnum';
   import { accentStore } from '@this/data/accentStore';
   import Button from './Button';
@@ -8,7 +9,7 @@
 
   const handleClick = ({ detail }: any) => {
     accentStore.set(detail);
-    window.location.href = '/colours';
+    goto('/colours');
   };
 </script>
 

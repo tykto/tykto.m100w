@@ -1,10 +1,11 @@
 <script lang="ts" context="module">
+  import { goto } from '@sapper/app';
   import { get } from 'svelte/store';
   import { accentStore } from '@this/data/accentStore';
 
   export async function preload() {
     if ((process as any).browser) {
-      window.location.href = get(accentStore) === null ? '/accent' : '/colours';
+      goto(get(accentStore) === null ? '/accent' : '/colours');
     }
   }
 </script>
