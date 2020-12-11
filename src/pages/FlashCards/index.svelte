@@ -1,67 +1,26 @@
 <script lang="ts">
-  import lowerCase from 'lodash/lowerCase';
   import { onDestroy, onMount } from 'svelte';
   import Card from '@this/components/Card';
-  import { groupedWords } from '@this/constants/groupedWords';
   import { background, border } from '@this/constants/theme';
-  import { CardDeck } from '@this/logic/CardDeck';
-  import { colourStore as colour } from '@this/data/colourStore';
-  import { accentStore as accent } from '@this/data/accentStore';
+  import { colourStore } from '@this/data/colourStore';
+  import { makeController } from './utility/makeController';
+  import { countdownStore, disabledStore, intervalHandleStore, progressStore, timeoutHandleStore, wordStore } from './data/game';
 
-  const handleFlip = ({ detail }) => (disabled = !detail.faceDown);
-
-  const handleFlipToBack = () => startRound();
-
-  const handleFlipToFront = () => {
-    countdown = timeLimitSeconds;
-    intervalHandle = setInterval(() => tick(), 1000);
-    timeoutHandle = setTimeout(() => finishRound(), 1000 * timeLimitSeconds);
-  };
-
-  const finishRound = () => {
-    countdown = 0;
-    clearInterval(intervalHandle);
-    const sound = new Audio(`audio/${$accent}/${lowerCase(word)}.mp3`);
-    sound.onended = () => cardCtl.flip();
-    sound.play();
-  };
-
-  const startGame = () => {
-    tickMp3 = new Audio('audio/tick.mp3');
-    deck = new CardDeck(words);
-    startRound();
-  };
-
-  const startRound = () => {
-    countdown = timeLimitSeconds;
-    word = deck.getNextCard();
-    progress = deck.getProgress();
-  };
-
-  const tick = () => {
-    countdown--;
-    if (countdown > 0 && countdown <= 3) {
-      tickMp3.play();
-    }
-  };
+  const handleFlipToBack = () => controller.prepareRound();
+  const handleFlipToFront = () => controller.startRound();
 
   let cardCtl: any;
-  let countdown = 0;
-  let deck: CardDeck;
-  let disabled: boolean = false;
-  let progress: any = {};
-  let intervalHandle: any = null;
-  let tickMp3: any = null;
-  let timeoutHandle: any = null;
-  let word: string = '';
-  const timeLimitSeconds = 5;
-  const words = groupedWords[$colour];
-  $: borderClass = border[$colour];
-  $: backgroundClass = background[$colour];
+  const borderClass = border[$colourStore];
+  const backgroundClass = background[$colourStore];
+  const controller = makeController(() => cardCtl.flip());
+  $: countdown = $countdownStore;
+  $: disabled = $disabledStore;
+  $: progress = $progressStore;
+  $: word = $wordStore;
 
-  onMount(() => startGame());
-  onDestroy(() => clearTimeout(timeoutHandle));
-  onDestroy(() => clearInterval(intervalHandle));
+  onMount(() => controller.startGame());
+  onDestroy(() => clearTimeout($timeoutHandleStore));
+  onDestroy(() => clearInterval($intervalHandleStore));
 </script>
 
 <div class="flex flex-col h-full">
@@ -76,16 +35,15 @@
       frontClass="bg-white flex justify-center items-center text-5xl font-bold rounded border-solid border-20 {borderClass}"
       text={word}
       {disabled}
-      on:flip={handleFlip}
       on:flipToFront={handleFlipToFront}
       on:flipToBack={handleFlipToBack} />
   </div>
   <div class="flex justify-between px-2 py-2">
     <div class="font-bold py-2 px-4"><span class="text-2xl pt-2">{countdown}</span></div>
     <div class="flex justify-center items-center px-3 space-x-2">
-      <span class="font-medium">{progress.card}</span>
+      <span class="font-medium">{progress.current}</span>
       <span>of</span>
-      <span class="font-medium">{progress.cardCount}</span>
+      <span class="font-medium">{progress.count}</span>
     </div>
   </div>
 </div>
