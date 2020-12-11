@@ -1,8 +1,8 @@
 <!-- based on: https://github.com/borntofrappe/svelte-tutorial/blob/master/Concentration/src/Card.svelte -->
 <script lang="ts">
   import { createEventDispatcher, onDestroy } from 'svelte';
-  export { rootClass as class };
   let rootClass = '';
+  export { rootClass as class };
   export let backClass = '';
   export let disabled = false;
   export let frontClass = '';
